@@ -1,0 +1,12 @@
+{
+  "welcome": "Welcome to the Loan Calculator!",
+  "loan_amount": "Please enter the loan amount:",
+  "loan_amount_error": "Please enter a valid loan amount:",
+  "loan_years": "Please enter the number of YEARS the loan is for:",
+  "loan_years_error": "Please enter a valid number of years. You must enter an integer greater or equal to 0.",
+  "loan_months": "Please enter the number of MONTHS the loan is for:",
+  "loan_months_error": "Please enter a valid number of months. You must enter an integer greater or equal to 0.",
+  "loan_duration_error": "The Loan Duration must be at least 1 month. Please re-enter the Loan Duration.",
+  "loan_apr": "Please enter the APR for your loan:",
+  "loan_apr_error": "Please enter a valid APR."
+}
