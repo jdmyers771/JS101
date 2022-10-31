@@ -5,6 +5,7 @@
 // Print the result to the terminal.
 
 const readline = require('readline-sync');
+const MESSAGES = require('./calculator_messages.json');
 
 function prompt(message) {
   console.log(`=> ${message}`);
@@ -14,46 +15,61 @@ function invalidNumber(number) {
   return number.trimStart() === '' || Number.isNaN(Number(number));
 }
 
-prompt('Welcome to Calculator!');
+prompt(MESSAGES.welcome);
 
-prompt("What's the first number?");
-let firstNumber = readline.question();
+while (true) {
+  prompt(MESSAGES.first_num);
+  let firstNumber = readline.question();
 
-while (invalidNumber(firstNumber)) {
-  prompt("Hmm... that doesn't look like a valid number.");
-  firstNumber = readline.question();
-}
+  while (invalidNumber(firstNumber)) {
+    prompt(MESSAGES.invalid_num);
+    firstNumber = readline.question();
+  }
 
-prompt("What's the second number?");
-let secondNumber = readline.question();
+  prompt(MESSAGES.second_num);
+  let secondNumber = readline.question();
 
-while (invalidNumber(secondNumber)) {
-  prompt("Hmm... that doesn't look like a valid number.");
-  secondNumber = readline.question();
-}
+  while (invalidNumber(secondNumber)) {
+    prompt(MESSAGES.invalid_num);
+    secondNumber = readline.question();
+  }
 
-prompt('What operation would you like to perform?\n1) Add 2) Subtract 3) Multiply 4) Divide');
-let operation = readline.question();
+  prompt(MESSAGES.operation);
+  let operation = readline.question();
 
-while (!['1', '2', '3', '4'].includes(operation)) {
-  prompt('Must choose 1, 2, 3 or 4');
-  operation = readline.question();
-}
+  while (!['1', '2', '3', '4'].includes(operation)) {
+    prompt(MESSAGES.invalid_operation);
+    operation = readline.question();
+  }
 
-let result;
-switch (operation) {
-  case '1':
-    result = firstNumber + secondNumber;
+  let result;
+  switch (operation) {
+    case '1':
+      result = firstNumber + secondNumber;
+      break;
+    case '2':
+      result = firstNumber - secondNumber;
+      break;
+    case '3':
+      result = firstNumber * secondNumber;
+      break;
+    case '4':
+      result = firstNumber / secondNumber;
+      break;
+  }
+
+  prompt(`The result is: ${result}`);
+
+  prompt(MESSAGES.repeat);
+  let repeat = readline.question();
+
+  while (!['1', '2'].includes(repeat)) {
+    prompt(MESSAGES.invalid_repeat);
+    repeat = readline.question();
+  }
+
+  if (repeat === '2') {
+    prompt(MESSAGES.end);
     break;
-  case '2':
-    result = firstNumber - secondNumber;
-    break;
-  case '3':
-    result = firstNumber * secondNumber;
-    break;
-  case '4':
-    result = firstNumber / secondNumber;
-    break;
+  }
 }
-
-prompt(`The result is: ${result}`);
